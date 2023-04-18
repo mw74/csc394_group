@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
@@ -5,6 +6,7 @@ from django.db import models
 class Student(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, primary_key=False)
 
     def __str__(self) -> str:
         return self.first_name + " " + self.last_name
