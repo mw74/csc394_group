@@ -42,7 +42,7 @@ These parameters can be adjusted to control the trade-off between creativity, di
 """
 davinci_index = GPTListIndex.from_documents(documents, service_context=service_context)
 
-response = davinci_index.query("Please plan a trip this summer for me and my family that cites specific evants and attractions.")
+response = davinci_index.query("Please plan a trip this summer that cites specific events and attractions including pricing and where to get tickets. Stay focused on a single location. Always address me by first name and respond in an incredibly friendly manner.")
 #print(display(Markdown(f"<b>{response}</b>")))
 
 print(response)
