@@ -24,11 +24,10 @@ def process_form(request):
         location = request.POST['location']
         interest = request.POST['interest']
         time_of_day = request.POST['timeOfDay']
-        trip_planner = TripPlanner(api_key)
+        trip_planner = TripPlanner(str(api_key))
         response = trip_planner.plan_trip(name, location, interest, time_of_day)
         context = {'response_string' : str(response)}
         print(str(response))
-        print(api_key)
         return render(request, 'response.html', context)
     return render(request, 'index.html')
 
