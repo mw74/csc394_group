@@ -49,7 +49,7 @@ class TripPlanner:
         with open(file_path, "w") as file:
             file.write(prompt)
 
-        documents = SimpleDirectoryReader('prompt').load_data()
+        documents = SimpleDirectoryReader(directory).load_data()
 
         llm_predictor = LLMPredictor(llm=ChatOpenAI(openai_api_key=self.api_key,
                                                model_name="gpt-3.5-turbo",
