@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Travel Availability Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #1A2B49;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #334D6E;
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #searchSection {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #searchInput, #categorySelect {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            margin-top: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="submit"] {
+            background-color: #1A2B49;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #334D6E;
+        }
+
+        footer {
+            background-color: #1A2B49;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Travel Availability Dashboard</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Select Travel</a></li>
+            <li><a href="#">Select Plan</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <section id="searchSection">
+            <h2>Search for Travel, Accommodations, and Activities</h2>
+            <form action="/INSERT SEARCH URL/" method="POST">
+                {% csrf_token %}
+                <input type="text" id="searchInput" name="query" placeholder="Type your search here..." />
+                <select id="categorySelect" name="category">
+                    <option value="all">All Categories</option>
+                    <option value="travel">Travel</option>
+                    <option value="accommodations">Accommodations</option>
+                    <option value="activities">Activities</option>
+                </select>
+                <input type="submit" value="Search" />
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Group Credits Here</p>
+    </footer>
+</body>
+</html>
