@@ -24,8 +24,9 @@ def process_form(request):
         location = request.POST['location']
         interest = request.POST['interest']
         time_of_day = request.POST['timeOfDay']
+        date_range = request.POST['dateRange']
         trip_planner = TripPlanner(str(api_key))
-        response = trip_planner.plan_trip(name, location, interest, time_of_day)
+        response = trip_planner.plan_trip(name, location, interest, date_range)
         context = {'response_string' : str(response)}
         print(str(response))
         return render(request, 'response.html', context)
@@ -37,14 +38,24 @@ class TripPlanner:
     def __init__(self, api_key):
         self.api_key = api_key
 
-    def plan_trip(self, user_name, user_location, user_interest, user_timeofday):
+    def plan_trip(self, user_name, user_location, user_interest, user_daterange):
         # Create and write the user input to a new text file
         directory = "src/prompt"
         filename = "user_input.txt"
         file_path = os.path.join(directory, filename)
 
-        prompt = f"Hi, my name is {user_name} and I am in {user_location} currently. \
-        I enjoy {user_interest} and I am looking for activities in the {user_timeofday}"
+        prompt = f"You are a travel agent, the best there ever was. Be lively and do \
+        not repeat back to me the obvious. You are fully attentive to my needs above \
+        all else. Respect that my date availability is immutable and is the foundation \
+        of the query as the dates determine available activities and events. You will \
+        produce for me an itinerary which provides fun and amusement for the whole family \
+        each and every day (morning, noon, and night). This itinerary will be organized \
+        by date and time and will provide links for tickets and reservations along with \
+        prices for each activity. The itinerary will account for travel at every step of \
+        the way beginning with travel from {user_location} to the airport and back. \
+        At the end, provide a cost estimate with itemized breakdown. \
+        My name is {user_name} and I would like to plan a vacation to anywhere \
+        {user_daterange} that focuses on {user_interest}."
 
         with open(file_path, "w") as file:
             file.write(prompt)
@@ -52,17 +63,17 @@ class TripPlanner:
         documents = SimpleDirectoryReader(directory).load_data()
 
         llm_predictor = LLMPredictor(llm=ChatOpenAI(openai_api_key=self.api_key,
-                                               model_name="gpt-3.5-turbo",
-                                               temperature=1.0,
+                                               model_name="gpt-4",
+                                               temperature=0.89,
                                                top_p=1.0,
                                                frequency_penalty=0.5,
                                                presence_penalty=1.0,
-                                               max_tokens=1024))
+                                               max_tokens=2048))
 
         service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
         davinci_index = GPTListIndex.from_documents(documents, service_context=service_context)
 
-        response = davinci_index.query("Please plan a trip this summer that cites specific events and attractions including pricing and where to get tickets. Stay focused on the given location. Always address me by first name and respond in an incredibly friendly manner. Plan the trip out with times and particular days where it could. Organize the data in bullet points so that its easy to see!")
+        response = davinci_index.query("Please plan my trip.")
 
         return response
