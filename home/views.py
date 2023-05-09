@@ -63,6 +63,6 @@ class TripPlanner:
 
         davinci_index = GPTListIndex.from_documents(documents, service_context=service_context)
 
-        response = davinci_index.query("Please plan a trip this summer that cites specific events and attractions including pricing and where to get tickets. Stay focused on the given location. Always address me by first name and respond in an incredibly friendly manner.")
+        response = davinci_index.query("Please plan a trip this summer that cites specific events and attractions including pricing and where to get tickets. Stay focused on the given location. Always address me by first name and respond in an incredibly friendly manner. Plan the trip out with times and particular days where it could. Organize the data in bullet points so that its easy to see!")
 
         return response
