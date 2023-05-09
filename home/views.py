@@ -43,7 +43,7 @@ class TripPlanner:
         filename = "user_input.txt"
         file_path = os.path.join(directory, filename)
 
-        prompt = f"Hi, my name is {user_name} and I live in {user_location}. \
+        prompt = f"Hi, my name is {user_name} and I am in {user_location} currently. \
         I enjoy {user_interest} and I am looking for activities in the {user_timeofday}"
 
         with open(file_path, "w") as file:
