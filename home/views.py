@@ -49,7 +49,7 @@ class TripPlanner:
         all else. Respect that my date availability is immutable and is the foundation \
         of the query as the dates determine available activities and events. You will \
         produce for me an itinerary which provides fun and amusement for the whole family \
-        each and every day (morning, noon, and night). This itinerary will be organized \
+        throughout each and every day. This itinerary will be organized \
         by date and time and will provide links for tickets and reservations along with \
         prices for each activity. The itinerary will account for travel at every step of \
         the way beginning with travel from {user_location} to the airport and back. \
@@ -64,11 +64,11 @@ class TripPlanner:
 
         llm_predictor = LLMPredictor(llm=ChatOpenAI(openai_api_key=self.api_key,
                                                model_name="gpt-4",
-                                               temperature=0.89,
+                                               temperature=1.0,
                                                top_p=1.0,
-                                               frequency_penalty=0.5,
+                                               frequency_penalty=0.0,
                                                presence_penalty=1.0,
-                                               max_tokens=2048))
+                                               max_tokens=4096))
 
         service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
