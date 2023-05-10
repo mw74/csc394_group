@@ -67,7 +67,8 @@ class TripPlanner:
                                                top_p=1.0,
                                                frequency_penalty=0.0,
                                                presence_penalty=1.0,
-                                               max_tokens=4096))
+                                               max_tokens=4096,
+                                               request_timeout=300))
 
         service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
