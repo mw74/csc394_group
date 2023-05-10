@@ -23,7 +23,6 @@ def process_form(request):
         name = request.POST['name']
         location = request.POST['location']
         interest = request.POST['interest']
-        time_of_day = request.POST['timeOfDay']
         date_range = request.POST['dateRange']
         trip_planner = TripPlanner(str(api_key))
         response = trip_planner.plan_trip(name, location, interest, date_range)

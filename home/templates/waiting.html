@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waiting for trip to be planned</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1A2B49;
+        }
+
+        .dot {
+            animation-name: blink;
+            animation-duration: 1.4s;
+            animation-iteration-count: infinite;
+            animation-fill-mode: both;
+        }
+
+        @keyframes blink {
+            0% { opacity: .2; }
+            20% { opacity: 1; }
+            100% { opacity: .2; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Planning your trip<span id="dots" class="dot">.</span></h1>
+    <script>
+        var dots = window.setInterval( function() {
+            var wait = document.getElementById("dots");
+            if ( wait.innerHTML.length > 3 ) 
+                wait.innerHTML = ".";
+            else 
+                wait.innerHTML += ".";
+            }, 500);
+    </script>
+</body>
+</html>
