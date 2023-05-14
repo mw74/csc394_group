@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Waiting for trip to be planned</title>
+    <title>Waiting Page</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
             padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
         }
 
         h1 {
@@ -19,30 +17,88 @@
             color: #1A2B49;
         }
 
-        .dot {
-            animation-name: blink;
-            animation-duration: 1.4s;
-            animation-iteration-count: infinite;
-            animation-fill-mode: both;
+        main {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        @keyframes blink {
-            0% { opacity: .2; }
-            20% { opacity: 1; }
-            100% { opacity: .2; }
+        .loading-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .loading-dots span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #1A2B49;
+            margin: 0 4px;
+            animation: loadingAnimation 1s infinite;
+        }
+
+        @keyframes loadingAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var timeoutID;
+        var taskId = '{{ task_id }}';
+        var url = '/home/task_status/';
+    
+        function checkTaskStatus() {
+            $.ajax({
+                url: url,
+                method: 'GET',
+                data: {
+                    task_id: taskId
+                },
+                success: function (data) {
+                    if (data.task_status === 'SUCCESS') {
+                        clearTimeout(timeoutID);
+                        window.location.href = '/home/task_status/?task_id=' + taskId;
+                        location.reload();
+                    } else {
+                        timeoutID = setTimeout(function () {
+                            checkTaskStatus();
+                        }, 5000);  // Check again after 5 seconds
+                        
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+    
+        $(document).ready(function () {
+            checkTaskStatus();
+        });
+    </script>
+      
 </head>
 <body>
-    <h1>Planning your trip<span id="dots" class="dot">.</span></h1>
-    <script>
-        var dots = window.setInterval( function() {
-            var wait = document.getElementById("dots");
-            if ( wait.innerHTML.length > 3 ) 
-                wait.innerHTML = ".";
-            else 
-                wait.innerHTML += ".";
-            }, 500);
-    </script>
+    <main>
+        <h1>Waiting for Task Completion</h1>
+        <div class="loading-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </main>
 </body>
 </html>
+

@@ -14,6 +14,10 @@ import os
 from pathlib import Path
 
 
+#Celery Settings
+CELERY_BROKER_URL = "redis://localhost:6379"
+CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'searchTravel',
+    'homework.management',
 ]
 
 MIDDLEWARE = [

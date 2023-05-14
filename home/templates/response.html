@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Response</title>
-	<style>
+    <title>Response</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -21,12 +21,18 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
+
+        pre {
+            white-space: pre-wrap;
+        }
     </style>
 </head>
 <body>
     <h1>Response</h1>
-	<main>
-		<p>{{response_string}}</p>
-	</main>
+    <main>
+        <pre>
+            {% include 'response.txt' %}
+        </pre>
+    </main>
 </body>
 </html>
