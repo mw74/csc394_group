@@ -24,7 +24,6 @@ django-celery-results==2.5.1
 django-environ==0.10.0
 environ==1.0
 executing==1.2.0
-ezgraphics @ file:///Users/harshpatel/Downloads/ezgraphics-2.2.tar.gz
 frozenlist==1.3.3
 gptcache==0.1.21
 idna==3.4
