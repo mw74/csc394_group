@@ -31,7 +31,9 @@
     <h1>Response</h1>
     <main>
         <pre>
-            {% include 'response.txt' %}
+            {% autoescape off %}
+                {{ response_string }}
+            {% endautoescape %}
         </pre>
     </main>
 </body>
