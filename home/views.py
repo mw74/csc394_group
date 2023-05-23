@@ -17,6 +17,10 @@ import time
 from django.contrib.auth.decorators import login_required
 from .models import Home
 from django.contrib.auth.models import User
+from .travel_activities import *
+import json
+
+
 load_dotenv()
 
 api_key = os.getenv('OPENAI_API_KEY')
@@ -36,7 +40,7 @@ def async_plan_trip(name, location, interest, date_range):
     global response
     trip_planner = TripPlanner(str(api_key))
     response = trip_planner.plan_trip(name, location, interest, date_range)
-    directory = "home/templates"
+    directory = "src/prompt"
     filename = "response.txt"
     file_path = os.path.join(directory, filename)
     with open(file_path, "w") as file:
@@ -74,7 +78,7 @@ def process_form(request):
 def task_status(request):
     global task_id
     global response
-    directory = "home/templates"
+    directory = "src/prompt"
     filename = "response.txt"
     file_path = os.path.join(directory, filename)
     response = read_file(file_path)
@@ -87,7 +91,7 @@ def task_status(request):
             task_id = None
             home.responses = response
             home.save()
-            directory = "home/templates"
+            directory = "src/prompt"
             filename = "response.txt"
             file_path = os.path.join(directory, filename)
             response = read_file(file_path)
@@ -103,14 +107,40 @@ def task_status(request):
 def view_response(request):
     user = request.user
     home = Home.objects.get(user=user)
-    return render(request, 'response.html', {'response_string': str(home.responses)})
+    #call travel_activities prior to render and updated context
+    try:
+        if home.activity == "N/A":
+            activity = run_travel_activities()
+            home.activity = activity
+            home.save()
+        else:
+            activity = home.activity
+
+        #parse JSON data
+        activity_data = json.loads(activity)
+        activity = activity_data['data'][0]
+        name = activity['name']
+        description = activity['description']
+        price = activity['price']['amount']
+        pictures = activity['pictures']
+        booking_link = activity['bookingLink']
+
+        context = {
+        'name': name,
+        'description': description,
+        'price': price,
+        'pictures': pictures,
+        'booking_link': booking_link,
+        'response_string': str(home.responses),
+        }
+        return render(request, 'response.html', context)
+    except:
+        return render(request, 'response.html', {'response_string': str(home.responses)})
 
 def read_file(file_path):
     with open(file_path, 'r') as file:
         file_contents = file.read()
     return file_contents
-
-
 
 class TripPlanner:
 

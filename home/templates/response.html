@@ -25,6 +25,13 @@
         pre {
             white-space: pre-wrap;
         }
+
+        .activity {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #EAEAEA;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -35,6 +42,16 @@
                 {{ response_string }}
             {% endautoescape %}
         </pre>
+        <div class="activity">
+            <h2>{{ name }}</h2>
+            <p>Description: {{ description }}</p>
+            <p>Price: ${{ price }}</p>
+            <p>Images:</p>
+            {% for picture in pictures %}
+                <img src="{{ picture }}" alt="Activity Image">
+            {% endfor %}
+            <p>Booking Link: <a href="{{ booking_link }}">Book Now</a></p>
+        </div>
     </main>
 </body>
 </html>
