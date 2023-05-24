@@ -20,8 +20,8 @@ class Home(models.Model):
     location = models.CharField(max_length = 60)
     interests = models.CharField(max_length = 200)
     time = models.CharField(max_length= 30)
-    responses = models.CharField(max_length=5000, default="N/A") #Stores Prompt/Response
-    activity = models.CharField(max_length=2000, default="N/A") #stores response from travel_activities
+    responses = models.CharField(max_length=50000, default="N/A") #Stores Prompt/Response
+    activity = models.CharField(max_length=30000, default="N/A") #stores response from travel_activities
     
     def __str__(self) -> str:
         return self.name +"/"+ str(self.user)

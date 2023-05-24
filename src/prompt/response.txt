@@ -1,102 +1,68 @@
-Hello, Clark Kent! As the best travel agent there ever was, I'm here to plan the ultimate Game-themed vacation for you and your family. The trip will take place from June 6th to June 13th, 2023.
+Hello, Harsh Patel! As the best travel agent, I'm excited to create an unforgettable and lively family vacation for you, taking into consideration all your unique requirements. We will start the trip from Chicago on June 10th, 2023, focusing on a city with fantastic nightlife: New Orleans, Louisiana.
 
-I've put together an exciting itinerary for your family, keeping in mind everyone's preferences from board games to interactive attractions.
+Day 1 - Arrival & Welcome (June 10, 2023)
+- Departure: Flights from Chicago O'Hare Airport to Louis Armstrong New Orleans International Airport
+(Operation times vary; compare prices on [Google Flights](https://www.google.com/flights)) Average fare: USD 200/person
 
-**Day 1: June 6th - Departure from Los Angeles**
+- Airport transfer: UberX or Lyft (~40 mins): ~USD 50
 
-- Travel to LAX airport:
-   * Transportation Options: [SuperShuttle](https://booking.supershuttle.com/) or [Lyft](https://www.lyft.com/)
-   
-- Flight: Reserve a flight from Los Angeles (LAX) to Tokyo, Japan.
-   * Book tickets [here](https://www.expedia.com/)
+- Check-in at JW Marriott New Orleans [Book here](https://www.marriott.com/reservation/rateListMenu.mi?defaultTab=standard): USD 250/night
 
-**Day 2: June 7th - Arrival in Tokyo & City Tour**
+- Dinner at Cochon Restaurant (19:00) [Reserve here](https://resy.com/cities/msy/cochon?date=2023-06-10): USD 40/person
 
-1. Morning
-   - Arrive at Haneda Airport (HND)
-   - Check-in at the hotel (recommendation: [Mandarin Oriental Tokyo](https://www.mandarinoriental.com/tokyo))
-   
-2. Afternoon
-   - Visit Odaiba, a game lover's paradise with arcades, VR experiences, and more
-      * Tickets not required for entry; pay as you play
+- Ghosts & Spirits Night Walking Tour (21:00) [Book here](http://www.graylineneworleans.com/all/tours/?id_search=http%3A%2F%2Freztest.dev.reporting%2Fgrayline_new_orleans_responsive&keywords=Ghosts+and+Spirits+NIGHT+Walking+Tour+Tickets#): USD 25/person
 
-3. Evening
-   - Dinner at [Kawaii Monster Cafe](http://kawaiimonster.jp/pc/)
+Day 2 - History & Culture:
+- Breakfast at Café du Monde (09:00)
 
-**Day 3: June 8th - Theme Parks & Game Centers**
+- Steamboat Natchez Harbor Cruise (11:30) [Buy tickets here](https://store.steamboatnatchez.com/harbor-cruise-with-lunch): USD 51/adult, USD 23/child
 
-1. Morning
-   - Visit Joypolis, an indoor theme park with virtual reality and arcade games
-      * Price: $35 per person
-      * Tickets: [Book here](https://tokyo-joypolis.com/en/ticket.html)
+- Lunch on board (included in ticket price)
 
-2. Afternoon
-   - Explore Akihabara, famous gaming district with stores like Super Potato and arcades like SEGA and Taito Station
+- National WWII Museum (14:30) [Buy tickets here](https://www.nationalww2museum.org/visit/buy-tickets): USD 33/adult, USD 18/child
 
-3. Evening
-   - Dinner at [Gundam Cafe](https://g-cafe.jp/akihabara/menu/)
+- Dinner at Emeril's New Orleans (19:00) [Reserve here](https://www.opentable.com/emerils-reservations-new-orleans?rtype=ism&restref=358): USD 55/person
 
-**Day 4: June 9th - Board Game Café & Pokémon Center**
+- Preservation Hall Jazz Concert (20:30) [Buy tickets here](https://www.preservationhall.com/tickets/): USD 25/person
 
-1. Morning
-   - Visit Dear Spaghetti, a board game cafe with an extensive collection of games
-      * Price: $10 per person
+Day 3 - Swamp & Plantation Adventures:
+- Breakfast at Ruby Slipper Café (08:30)
 
-2. Afternoon
-   - Head to the Pokémon Center Mega Tokyo for exclusive merchandise and game-related fun
+- Full-Day Cajun Bayou Swamp & Plantation Tours (10:00) [Book here](https://www.cajunencounters.com/new-orleans-tours/swamp-plantation-combo-tour/): USD 95/adult, USD 65/child
 
-3. Evening
-   - Dinner at [Alice in Fantasy Book](https://fantasy-dining.com/contents/aifb/slider.html)
+- Lunch at Laura Plantation Restaurant (~13:00)
 
-**Day 5: June 10th - Travel to Osaka**
+- Return to New Orleans (~18:00)
 
-- Flight: Reserve a flight from Tokyo (HND) to Osaka (KIX)
-   * Book your tickets [here](https://www.expedia.com/)
+- Dinner at Red Fish Grill (19:30) [Reserve here](https://www.opentable.com/r/red-fish-grill-reservations-new-orleans): USD 40/person
 
-- Check-in at the hotel (recommendation: [The Ritz-Carlton Osaka](https://www.ritzcarlton.com/en/hotels/japan/osaka))
+- Walk along Bourbon Street for vibrant nightlife and possible family-friendly events
 
-**Day 6: June 11th - Universal Studios Japan**
+Day 4 - Arts & Music:
+- Breakfast at Willa Jean (09:00)
 
-1. Morning
-   - Spend a full day at Universal Studios Japan, experiencing attractions like Super Nintendo World
-      * Price: $80 per person
-      * Tickets: [Book here](https://www.usj.co.jp/)
+- New Orleans Museum of Art & Sculpture Garden (10:30): USD 15/adult, children free
 
-2. Evening
-   - Dinner at [Kushikatsu Daruma](http://www.katanuki.co.kr/shop/main/index.php)
+- Lunch at The Blue Crab Restaurant & Oyster Bar (~13:00): USD 35/person
 
-**Day 7: June 12th - Final Fun-Filled Day in Osaka**
+- Explore Frenchmen Street for live music performances & shopping
 
-1. Morning
-   - Explore Round 1 Stadium, an entertainment complex with arcade games, bowling, karaoke, and more
-      * Pay for each activity as you go
+- Dinner at Arnaud's Restaurant (19:00) [Reserve here](https://www.opentable.com/secure/reservation/main?rtype=ism&restref=77777): USD 50/person 
 
-2. Afternoon
-   - Relax and stroll around Dotonbori
+- Nighttime Carriage Ride in the French Quarter [Book here](https://www.neworleanscarriages.com/historic-city/carriages-citylights-evening/): USD 40/person
 
-3. Evening
-   - Farewell Dinner at [Matsusakagyu Yakiniku M](https://www.mwh1960.jp/en/)
+Day 5 - Departure (June 14, 2023)
+- Check-out from hotel
 
-**Day 8: June 13th - Departure from Osaka**
+- Airport transfer: UberX or Lyft (~40 mins): ~USD 50
 
-- Flight: Reserve a flight from Osaka (KIX) back to Los Angeles (LAX)
-   * Book your tickets [here](https://www.expedia.com/)
+Total Estimated Cost:
+- Flights: USD 800
+- Hotel (4 nights): USD 1,000
+- Transportation: USD 100
+- Activities & Tickets: USD 334/adult, USD 271/child
+- Meals: USD 335/person
 
-- Travel to home:
-   * Transportation Options: [SuperShuttle](https://booking.supershuttle.com/) or [Lyft](https://www.lyft.com/)
-   
-**Cost Breakdown (per person):**
+Overall Trip Estimate (Family of 4 with 2 adults and 2 children): USD 3,940
 
-- Flights: $1,200
-- Accommodations: $1,000
-- Activities: $135
-- Food: $300
-- Transportation: $150 (round trip shuttle or Lyft)
-
-**Total Estimate:** $2,785
-
-*Please note that these prices are approximate and may vary.*
-
-There you have it, Clark Kent! A fantastic Game-themed vacation in Japan. This itinerary is packed with amusement for your entire family. If you require additional recommendations or assistance with bookings, feel free to ask.
-
-Enjoy this once-in-a-lifetime adventure!
+I hope this fabulous New Orleans itinerary meets your expectations in every aspect. Please verify all ticket prices, availability, and operating hours before booking as they may be subject to change. Have a fantastic vacation filled with incredible memories!
