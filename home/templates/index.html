@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>{% block title %}Prompt Form{% endblock %} </title>
+    <title>{% block title %}Prompt Form{% endblock %}</title>
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
     {% load static %}
-	<style>
+    <style>
         html, body {
             background-image: url("{% static 'images/vacation.jpg' %}");
             height: 100%;
         }
-    
+
         body {
             font-family: Arial, sans-serif;
             background-size: cover;
@@ -20,36 +20,36 @@
             justify-content: center;
             padding: 20px;
         }
-    
+
         .navbar-brand {
-            font-size: 1.5em; 
+            font-size: 1.5em;
         }
 
         .nav-link {
             font-size: 1.2em;
         }
-        
+
         .navbar {
-            background-color: #ffffff !important; 
+            background-color: #ffffff !important;
         }
-    
+
         .navbar-brand, .navbar-light .navbar-nav .nav-link, .navbar-light .navbar-nav .dropdown-toggle {
             color: #1A2B49 !important;
         }
 
         .dropdown-menu {
-            width: 350px; 
-            max-height: 250px; 
+            width: 350px;
+            max-height: 250px;
             overflow-y: auto;
         }
-    
+
         .form-container {
             flex-grow: 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-    
+
         form {
             width: 80%;
             background-color: white;
@@ -57,12 +57,12 @@
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-    
+
         label {
             display: block;
             margin-top: 10px;
         }
-    
+
         input[type="text"], input[type="date"], select {
             width: 100%;
             padding: 10px;
@@ -71,7 +71,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             margin-top: 5px;
         }
-    
+
         button[type="submit"] {
             background-color: #1A2B49;
             color: white;
@@ -83,69 +83,49 @@
             width: 100%;
             transition: background-color 0.3s ease;
         }
-    
+
         button[type="submit"]:hover {
             background-color: #334D6E;
         }
-    </style>
-    
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light transparent-nav">
-            <div class="container-fluid">
-                <a class="navbar-brand fw-bold" href="#">TravelApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" href="#">Destinations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" href="#">Trips</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link fw-bold" href="#">Contact Us</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Login
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="navbarDropdown">
-                                <form>
-                                    <div class="row">
-                                        <div class="col-12 mb-3">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username">
-                                        </div>
-                                        <div class="col-12 mb-3">
-                                            <label for="password" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password">
-                                        </div>
-                                    </div>
-                                    <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary">Login</button>
-                                    </div>
-                                    <div class="mt-3">
-                                        <a href="#">Create a new account</a>
-                                        <br>
-                                        <a href="#">Forgot your password?</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
-        
-      
 
-      <div class="form-container">
+        .navbar .nav-item .btn-link {
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light transparent-nav">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">TravelApp</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#">Trips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold" href="#">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="/home">
+                            <button type="submit" class="btn btn-link nav-link fw-bold logout-btn">Logout</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="form-container">
         <form method="POST" action="{% url 'process_form' %}">
             {% csrf_token %}
             <div class="row">
@@ -153,36 +133,81 @@
                     <label for="name" class="form-label">Name:</label>
                     <input type="text" class="form-control" id="name" name="name">
                 </div>
-    
+
                 <div class="col-md-2 mb-3">
                     <label for="location" class="form-label">Location:</label>
                     <select class="form-select" id="location" name="location">
                         <option selected>Choose...</option>
-                        <option value="new_york">New York,NY</option>
-                        <option value="los_angeles">Los Angeles,CA</option>
-                        <option value="chicago">Chicago,IL</option>
-                        <!-- We can add more options as needed -->
+                        <option value="new_york">New York, NY</option>
+                        <option value="los_angeles">Los Angeles, CA</option>
+                        <option value="chicago">Chicago, IL</option>
+                        <option value="miami">Miami, FL</option>
+                        <option value="san_francisco">San Francisco, CA</option>
+                        <option value="atlanta">Atlanta, GA</option>
+                        <option value="dallas">Dallas, TX</option>
+                        <option value="seattle">Seattle, WA</option>
+                        <option value="boston">Boston, MA</option>
+                        <option value="houston">Houston, TX</option>
+                        <option value="denver">Denver, CO</option>
+                        <option value="orlando">Orlando, FL</option>
+                        <option value="washington_dc">Washington, D.C.</option>
+                        <option value="philadelphia">Philadelphia, PA</option>
+                        <option value="phoenix">Phoenix, AZ</option>
+                        <option value="las_vegas">Las Vegas, NV</option>
+                        <option value="san_diego">San Diego, CA</option>
+                        <option value="minneapolis">Minneapolis, MN</option>
+                        <option value="detroit">Detroit, MI</option>
+                        <option value="charlotte">Charlotte, NC</option>
+                        <option value="tampa">Tampa, FL</option>
+                        <option value="salt_lake_city">Salt Lake City, UT</option>
+                        <option value="new_orleans">New Orleans, LA</option>
+                        <option value="portland">Portland, OR</option>
+                        <option value="san_antonio">San Antonio, TX</option>
+                        <option value="pittsburgh">Pittsburgh, PA</option>
+                        <option value="austin">Austin, TX</option>
+                        <option value="nashville">Nashville, TN</option>
+                        <option value="raleigh">Raleigh, NC</option>
+                        <option value="cleveland">Cleveland, OH</option>
+                        <option value="san_jose">San Jose, CA</option>
+                        <option value="columbus">Columbus, OH</option>
+                        <option value="indianapolis">Indianapolis, IN</option>
+                        <option value="kansas_city">Kansas City, MO</option>
+                        <option value="st_louis">St. Louis, MO</option>
+                        <option value="cincinnati">Cincinnati, OH</option>
+                        <option value="milwaukee">Milwaukee, WI</option>
+                        <option value="baltimore">Baltimore, MD</option>
+                        <option value="honolulu">Honolulu, HI</option>
+                        <option value="anchorage">Anchorage, AK</option>
+                        <option value="albuquerque">Albuquerque, NM</option>
+                        <option value="boise">Boise, ID</option>
+                        <option value="omaha">Omaha, NE</option>
+                        <option value="tucson">Tucson, AZ</option>
+                        <option value="toronto">Toronto, ON, Canada</option>
+                        <option value="vancouver">Vancouver, BC, Canada</option>
+                        <option value="montreal">Montreal, QC, Canada</option>
+                        <option value="calgary">Calgary, AB, Canada</option>
+                        <option value="ottawa">Ottawa, ON, Canada</option>
+                        <option value="edmonton">Edmonton, AB, Canada</option>
+                        <option value="quebec_city">Quebec City, QC, Canada</option>
                     </select>
                 </div>
-    
+
                 <div class="col-md-3 mb-3">
                     <label for="interest" class="form-label">Interest:</label>
                     <input type="text" class="form-control" id="interest" name="interest">
                 </div>
-    
+
                 <div class="col-md-3 mb-3">
                     <label for="dateRange" class="form-label">Range of Dates:</label>
                     <input type="date" class="form-control" id="dateRange" name="dateRange">
+                    <input type="date" class="form-control" id="returnDate" name="returnDate">
                 </div>
             </div>
-    
+
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-    
-    
-    
-
 </body>
 </html>
+
 

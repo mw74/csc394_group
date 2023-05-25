@@ -19,7 +19,7 @@ class Home(models.Model):
     name = models.CharField(max_length =60)
     location = models.CharField(max_length = 60)
     interests = models.CharField(max_length = 200)
-    time = models.CharField(max_length= 30)
+    time = models.CharField(max_length= 60)
     responses = models.CharField(max_length=50000, default="N/A") #Stores Prompt/Response
     activity = models.CharField(max_length=60000, default="N/A") #stores response from travel_activities
     

@@ -64,7 +64,11 @@ def process_form(request):
         interest = request.POST['interest']
         home.interests = interest
         date_range = request.POST['dateRange']
-        home.time = date_range
+        return_date = request.POST['returnDate']
+        home.time = f"{date_range} to {return_date}"
+        date_range = home.time
+        home.responses = "N/A"
+        home.activity = "N/A"
         home.save()
         task = async_plan_trip.delay(name, location, interest, date_range)
         response = ""
