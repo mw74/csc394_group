@@ -111,16 +111,16 @@
                         <a class="nav-link" href="/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Trips</a>
+                        <a class="nav-link" href="/home/response">Trips</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="/home/about">About Us</a>
                     </li>
                     <li class="nav-item">
                         <form method="POST" action="{% url 'logout' %}">
                             {% csrf_token %}
                             <input type="hidden" name="next" value="/home">
-                            <button type="submit" class="btn btn-link nav-link pl-3 pr-3">Logout</button> <!-- Added padding to the logout button -->
+                            <button type="submit" class="btn btn-link nav-link pl-3 pr-3">Logout</button>
                         </form>
                     </li>
                 </ul>
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <label for="location">Location:</label>
+                    <label for="location">Destination:</label>
                     <select class="form-select" id="location" name="location">
                         <option selected>Choose...</option>
                         <option value="new_york">New York, NY</option>

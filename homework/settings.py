@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'searchTravel',
     'homework.management',
     'bootstrap5'
 ]

@@ -52,6 +52,23 @@
                 transform: scale(1);
             }
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .view-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #1A2B49;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -69,13 +86,13 @@
                 success: function (data) {
                     if (data.task_status === 'SUCCESS') {
                         clearTimeout(timeoutID);
-                        window.location.href = '/home/task_status/?task_id=' + taskId;
-                        location.reload();
+                        setTimeout(function () {
+                            window.location.href = '/home/response'; // Redirect to response page
+                        }, 30000); // Redirect after 30 seconds
                     } else {
                         timeoutID = setTimeout(function () {
                             checkTaskStatus();
                         }, 5000);  // Check again after 5 seconds
-                        
                     }
                 },
                 error: function (xhr, status, error) {
@@ -83,12 +100,11 @@
                 }
             });
         }
-    
+
         $(document).ready(function () {
             checkTaskStatus();
         });
     </script>
-      
 </head>
 <body>
     <main>
@@ -101,4 +117,5 @@
     </main>
 </body>
 </html>
+
 

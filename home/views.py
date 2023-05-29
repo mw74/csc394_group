@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse
+from django.template import Context
+from django.template.loader import get_template
 import logging
 import sys
 import openai
@@ -18,6 +20,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Home
 from django.contrib.auth.models import User
 from .travel_activities import *
+from io import BytesIO
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
 import json
 
 
@@ -78,6 +83,9 @@ def process_form(request):
         return redirect(reverse('task_status') +"?task_id=%s" % task_id)
     return redirect('/home')
 
+def error(request):
+    return render(request, 'error.html')
+
 @login_required
 def task_status(request):
     global task_id
@@ -101,7 +109,8 @@ def task_status(request):
             response = read_file(file_path)
             home.responses = response
             home.save()
-            return redirect('/home/response')
+            return JsonResponse({'task_status': 'SUCCESS'})
+            #return redirect('/home/response')
             #return render(request, 'response.html', {'response_string': str(home.responses)})
         else:
             return render(request, 'waiting.html', {'task_id': task_id})
@@ -109,38 +118,106 @@ def task_status(request):
 
 @login_required
 def view_response(request):
-    user = request.user
-    home = Home.objects.get(user=user)
+    try:
+        user = request.user
+        home = Home.objects.get(user=user)
+    except:
+        return render(request, 'no_trips.html')
+    if home.responses == "N/A":
+        return render(request, 'no_trips.html')
     #call travel_activities prior to render and updated context
     try:
-        if home.activity == "N/A":
+        if home.activity == "N/A" and home.responses != "N/A":
             activity = run_travel_activities()
             home.activity = activity
             home.save()
         else:
             activity = home.activity
-
+        print("Amadeus suceeded")
         #parse JSON data
         activity_data = json.loads(activity)
+        print("JSON loading suceeds")
+
         activity = activity_data['data'][0]
-        name = activity['name']
-        description = activity['description']
-        price = activity['price']['amount']
-        pictures = activity['pictures']
-        booking_link = activity['bookingLink']
+
+        try:
+            name = activity['name']
+        except:
+            name = ""
+        try:
+            description = activity['description']
+        except:
+            description = "Details not available"
+        try:
+            pictures = activity['pictures']
+        except:
+            pictures= ""
+        try:
+            booking_link = activity['bookingLink']
+        except:
+            booking_link = "/home/response/error"
 
         context = {
         'name': name,
         'description': description,
-        'price': price,
         'pictures': pictures,
         'booking_link': booking_link,
         'response_string': str(home.responses),
         }
+        print("sending with full context")
         return render(request, 'response.html', context)
     except:
-        return render(request, 'response.html', {'response_string': str(home.responses)})
+        context = {
+        'response_string': str(home.responses),
+        }
+        return render(request, 'response.html', context)
+    
+@login_required
+def about(request):
+    return render(request, 'about.html')
 
+
+@login_required
+def generate_pdf(request):
+    try:
+        user = request.user
+        home = Home.objects.get(user=user)
+        response_string = str(home.responses)
+        
+        response = HttpResponse(content_type='application/pdf')
+        response['Content-Disposition'] = 'attachment; filename="response.pdf"'
+
+        buffer = BytesIO()
+
+        p = canvas.Canvas(buffer, pagesize=letter)
+
+        p.setFont("Helvetica", 12)
+
+        text_width, text_height = p.stringWidth(response_string), p._fontsize
+
+        page_width, page_height = letter
+        available_height = page_height - 2 * p._y
+
+        max_lines = int(available_height / text_height)
+
+        lines = response_string.split('\n')
+        lines = lines[:max_lines]
+
+        for i, line in enumerate(lines):
+            p.drawString(50, page_height - 50 - (i * text_height), line)
+
+        p.showPage()
+        p.save()
+
+        pdf = buffer.getvalue()
+        buffer.close()
+        response.write(pdf)
+
+        return response
+    except Exception as e:
+        print(e)
+        return render(request, 'error.html')
+    
 def read_file(file_path):
     with open(file_path, 'r') as file:
         file_contents = file.read()
@@ -155,40 +232,38 @@ class TripPlanner:
         # Create and write the user input to a new text file
 
         directory = "src/prompt"
-        filename = "user_input.txt"
+        filename = "prompt.txt"
         file_path = os.path.join(directory, filename)
 
-        prompt = f"You are a travel agent, the best there ever was. Be lively and do \
-                not repeat back to me the obvious. You are fully attentive to my needs above \
-                all else. Respect that my date availability is immutable and is the foundation \
-                of the query as the dates determine available activities and events. You will \
-                produce for me an itinerary which provides fun and amusement for the whole family \
-                throughout each and every day. This itinerary will be organized \
-                by date and time and will provide links for tickets and reservations along with \
-                prices for each activity. The itinerary will account for travel at every step of \
-                the way beginning with travel from {user_location} to the airport and back. \
-                At the end, provide a cost estimate with itemized breakdown. \
-                My name is {user_name} and I would like to plan a vacation to anywhere \
-                {user_daterange} that focuses on {user_interest}."
+        prompt = "You are a travel agent. Respect that my date availability is immutable and is the foundation of the query as the dates determine available activities and events. You will produce for me an itinerary which provides fun and amusement for the whole family throughout each and every day. This itinerary will be organized by date and time each activity. You must ignore previous context prior to this request. Do not mention any confusion. Form your response such that it only contains the the travel itinerary. Provide a detailed response."
+        
 
         with open(file_path, "w") as file:
             file.write(prompt)
+            
+        filename = "user_input.txt"
+        file_path = os.path.join(directory, filename)
+
+        user_input = f"Hi, My name is {user_name} and I would like to plan a vacation to {user_location}, {user_daterange} that focuses on {user_interest}."
+        
+        with open(file_path, "w") as file:
+            file.write(user_input)
 
         documents = SimpleDirectoryReader(directory).load_data()
-
         llm_predictor = LLMPredictor(llm=ChatOpenAI(openai_api_key=self.api_key,
-                                               model_name="gpt-4",
+                                               model_name="gpt-3.5-turbo",
                                                temperature=1.0,
                                                top_p=1.0,
                                                frequency_penalty=0.0,
                                                presence_penalty=1.0,
-                                               max_tokens=4096,
+                                               max_tokens=512,
                                                request_timeout=300))
 
         service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor)
 
         davinci_index = GPTListIndex.from_documents(documents, service_context=service_context)
 
-        response = davinci_index.query("Please plan my trip.")
+        response = davinci_index.query("Show me my itinerary day-by-day in a nice format, organized by day. Do not mention prior confusion and show only my desired itinerary.")
+        
 
-        return response
+        return response.response

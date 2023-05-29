@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Response</title>
+    <title>Error: Link Not Available</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -26,7 +26,7 @@
             white-space: pre-wrap;
         }
 
-        .activity {
+        .error-message {
             margin-top: 20px;
             padding: 10px;
             background-color: #EAEAEA;
@@ -54,28 +54,14 @@
     </style>
 </head>
 <body>
-    <h1>Response</h1>
+    <h1>Error: Link Not Available</h1>
     <main>
-        <pre>
-            {% autoescape off %}
-                {{ response_string }}
-            {% endautoescape %}
-        </pre>
-        <div class="activity">
-            <h2>{{ name }}</h2>
-            <p>Description: {{ description }}</p>
-            <p>Images:</p>
-            {% for picture in pictures %}
-                <img src="{{ picture }}" alt="Activity Image">
-            {% endfor %}
-            <p>Booking Link: <a href="{{ booking_link }}">Book Now</a></p>
+        <div class="error-message">
+            <p>Sorry, the requested link is not available.</p>
         </div>
         <div class="button-container">
-            <a href="/home" class="button">Home</a>
-            <a href="/home/response/generate-pdf/" class="button">Save</a>
+            <a href="/home/response" class="button">Back</a>
         </div>
     </main>
 </body>
 </html>
-
-

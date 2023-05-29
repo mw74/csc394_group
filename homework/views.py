@@ -4,6 +4,10 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 from django.contrib.auth.models import User
 
+
+def home_redirect(request):
+    return redirect('/home')
+
 def register_view(request):
     if request.user.is_authenticated:
         return redirect('/home')
